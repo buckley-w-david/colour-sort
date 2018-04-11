@@ -19,6 +19,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}:latest"
           name: "Build and Deploy Website Docker Image"
     working_directory: ~/repo
+
   unit_test:
     docker:
       # specify the version you desire here
@@ -48,7 +49,7 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            pip install .
+            pip install -e .
 
       - save_cache:
           paths:
