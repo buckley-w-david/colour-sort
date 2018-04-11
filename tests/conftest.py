@@ -7,9 +7,7 @@ from PIL import Image
 
 @pytest.fixture(scope='session')
 def image() -> Image.Image:
-    rand_colour = lambda: np.random.randint(0, 255, size=(4096, 4096), dtype='u1')
-    data_red, data_blue, data_green = rand_colour(), rand_colour(), rand_colour()
-    data = np.vstack(([data_red.T], [data_green.T], [data_blue.T])).T
+    data = np.random.randint(0, 255, size=(4096, 4096, 3), dtype='u1')
     return Image.fromarray(data, mode='RGB')
 
 @pytest.fixture
