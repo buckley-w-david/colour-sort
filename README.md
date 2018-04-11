@@ -43,6 +43,7 @@ pylint src tests
 To run the mypy type checker, run:
 ```
 mypy src tests
+```
 
 #### Automated Testing
 
