@@ -1,4 +1,4 @@
-## Energuide API - ETL component
+## Colour Sort - Generating Images using all 256<sup>3</sup> RGB colours
 
 ### Installation
 
