@@ -1,5 +1,6 @@
-import click
 import typing
+import click
+
 
 @click.group()
 def main() -> None:
@@ -9,4 +10,4 @@ def main() -> None:
 @main.command()
 @click.argument('image', type=click.File('rb'))
 def generate(image: typing.IO[bytes]) -> None:
-    pass
+    print(image)
