@@ -1,5 +1,7 @@
 ## Colour Sort - Generating Images using all 256<sup>3</sup> RGB colours
 
+CircleCI Status: [![CircleCI](https://circleci.com/gh/buckley-w-david/colour_sort.svg?style=svg)](https://circleci.com/gh/buckley-w-david/colour_sort)
+
 ### Installation
 
 #### Python 3.6
