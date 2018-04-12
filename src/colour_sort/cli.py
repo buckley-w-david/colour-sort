@@ -1,3 +1,4 @@
+import itertools
 import typing
 import click
 from PIL import Image
@@ -12,7 +13,16 @@ def main() -> None:
 @click.argument('file', type=click.File('rb'))
 @click.argument('out', type=click.File('wb'))
 @click.option('--filetype', type=click.Choice(['png', 'jpeg']))
-@click.option('--sorttype', type=click.Choice(['brightness', 'rgb']), default='brightness')
+@click.option(
+    '--sorttype',
+    type=click.Choice(
+        ['brightness'] + \
+        list(
+            ''.join(tup)
+            for tup in itertools.permutations('rgb', 3)
+        )
+    ),
+    default='brightness')
 def generate(file: typing.IO[bytes], out: typing.IO[bytes], filetype: str, sorttype: str) -> None:
     if not filetype:
         if out.name != '<stdout>':
