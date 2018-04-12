@@ -16,7 +16,7 @@ def test_generate(
     runner = CliRunner()
     filename = os.path.join(tmpdir, 'tmp.png')
 
-    def identity(argument: Image.Image) -> Image.Image:
+    def identity(argument: Image.Image, *args, **kwargs) -> Image.Image: #pylint: disable=unused-argument
         return argument
 
     monkeypatch.setattr(image, 'as_sorted', identity)

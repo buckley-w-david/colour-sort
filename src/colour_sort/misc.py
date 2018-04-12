@@ -1,4 +1,16 @@
+import typing
 import numpy as np
+
+
+def sort_map(src: np.ndarray, mapped: np.ndarray, order: typing.Optional[typing.List[str]] = None) -> np.ndarray:
+    if order is not None:
+        mapping = np.argsort(src)
+    else:
+        mapping = np.argsort(src, order=order)
+    reverse_mapping = np.argsort(mapping)
+
+    return mapped[reverse_mapping]
+
 
 def cartesian(arrays, out=None):
     """
