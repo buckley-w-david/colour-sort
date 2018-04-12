@@ -6,14 +6,6 @@ from colour_sort import misc
 
 IMAGE_SIZE = 4096
 
-def sort_map(src: np.ndarray, mapped: np.ndarray, order: typing.Optional[typing.List[str]] = None) -> np.ndarray:
-    if order is not None:
-        mapping = np.argsort(src)
-    else:
-        mapping = np.argsort(src, order=order)
-    reverse_mapping = np.argsort(mapping)
-
-    return mapped[reverse_mapping]
 
 class ColourSorter():
 
@@ -30,7 +22,7 @@ class ColourSorter():
 
         result_by_brightness = self._result_arr[np.argsort(result_brightness)]
 
-        mapped = sort_map(src_brightness, result_by_brightness)
+        mapped = misc.sort_map(src_brightness, result_by_brightness)
 
         return np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE, 3))
 
@@ -43,7 +35,7 @@ class ColourSorter():
                                                      formats='u1, u1, u1')
         structured_base.sort(order=['r', 'g', 'b'])
 
-        mapped = sort_map(src_structures, structured_base, order=['r', 'g', 'b'])
+        mapped = misc.sort_map(src_structures, structured_base, order=['r', 'g', 'b'])
         shaped = np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE))
 
         return shaped.view('u1').reshape(shaped.shape + (-1,))
