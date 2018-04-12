@@ -6,4 +6,6 @@
 **/.pytest_cache
 .python-version
 .env
-
+**/*.png
+**/*.jpg
+**/*.jpeg
