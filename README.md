@@ -47,6 +47,20 @@ To run the mypy type checker, run:
 mypy src tests
 ```
 
-#### Automated Testing
+### Running locally
+
+Once the tool has been installed, it can be ran with the following command
+```
+Usage: colour generate [OPTIONS] FILE OUT
+
+Options:
+  --filetype [png|jpeg]
+  --sorttype [brightness|rgb]
+  --help                       Show this message and exit
+```
+
+### Automated Testing
 
 This repo is connected to CircleCI, and all tests, linters, and static type checking must pass before merging to master.
+
+
