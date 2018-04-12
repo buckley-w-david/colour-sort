@@ -2,7 +2,6 @@ import numpy as np
 from PIL import Image
 import pytest
 from colour_sort.image import as_sorted
-from colour_sort import misc
 
 
 IMAGE_SIZE = 4096

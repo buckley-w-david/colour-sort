@@ -1,4 +1,3 @@
-import typing
 import numpy as np
 from PIL import Image
 from colour_sort import misc
