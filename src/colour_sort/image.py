@@ -25,16 +25,16 @@ class ColourSorter():
 
         return np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE, 3))
 
-    def _sort_rgb(self) -> np.ndarray:
+    def _sort_rgb(self, mode) -> np.ndarray:
         src_structures = np.core.records.fromarrays(self._src_arr.transpose(),
                                                     names='r, g, b',
                                                     formats='u1, u1, u1')
         structured_base = np.core.records.fromarrays(self._result_arr.transpose(),
                                                      names='r, g, b',
                                                      formats='u1, u1, u1')
-        structured_base.sort(order=['r', 'g', 'b'])
+        structured_base.sort(order=[c for c in mode])
 
-        mapped = misc.sort_map(src_structures, structured_base, order=['r', 'g', 'b'])
+        mapped = misc.sort_map(src_structures, structured_base, order=[c for c in mode])
         shaped = np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE))
 
         return shaped.view('u1').reshape(shaped.shape + (-1,))
@@ -42,8 +42,8 @@ class ColourSorter():
     def transform(self, mode: str = 'brightness') -> Image.Image:
         if mode == 'brightness':
             return Image.fromarray(self._sort_brightness())
-        elif mode == 'rgb':
-            return Image.fromarray(self._sort_rgb())
+        elif ''.join(sorted(mode)) == 'bgr':
+            return Image.fromarray(self._sort_rgb(mode))
 
         raise ValueError('"mode" must be one of: ["brightness", "rgb"]')
 
