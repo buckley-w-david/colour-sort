@@ -55,8 +55,8 @@ Usage: colour generate [OPTIONS] FILE OUT
 
 Options:
   --filetype [png|jpeg]
-  --sorttype [brightness|rgb]
-  --help                       Show this message and exit
+  --sorttype [brightness|rgb|rbg|grb|gbr|brg|bgr]
+  --help                          Show this message and exit.
 ```
 
 ### Automated Testing
