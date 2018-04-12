@@ -13,7 +13,7 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+              echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 
               docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}:latest" .
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}:${CIRCLE_SHA1}"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}:latest"
