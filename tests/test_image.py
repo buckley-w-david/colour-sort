@@ -1,16 +1,11 @@
-import os
 import numpy as np
 from PIL import Image
-from colour_sort import image
+from colour_sort.image import as_sorted
 
 IMAGE_SIZE = 4096
 
-def test_as_sorted() -> None:
-    directory, _ = os.path.split(__file__)
-    test_file_path = os.path.join(directory, 'test.png')
-    with open(test_file_path, 'rb') as file:
-        input_image = Image.open(file)
-        output = image.as_sorted(input_image)
+def test_as_sorted(image: Image.Image) -> None:
+    output = as_sorted(image)
 
     pic = np.reshape(np.array(output), (IMAGE_SIZE*IMAGE_SIZE, 3))
     structured_pic = np.core.records.fromarrays(pic.transpose(),
