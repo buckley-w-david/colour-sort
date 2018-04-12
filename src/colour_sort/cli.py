@@ -1,6 +1,7 @@
 import typing
 import click
-
+from PIL import Image
+from colour_sort import image
 
 @click.group()
 def main() -> None:
@@ -8,6 +9,18 @@ def main() -> None:
 
 
 @main.command()
-@click.argument('image', type=click.File('rb'))
-def generate(image: typing.IO[bytes]) -> None:
-    print(image)
+@click.argument('file', type=click.File('rb'))
+@click.argument('out', type=click.File('wb'))
+@click.option('--filetype', type=click.Choice(['png', 'jpeg']))
+def generate(file: typing.IO[bytes], out: typing.IO[bytes], filetype: str) -> None:
+    if not filetype:
+        if out.name != '<stdout>':
+            filetype = out.name.split('.')[-1]
+        elif file.name != '<stdin>':
+            filetype = file.name.split('.')[-1]
+        else:
+            exit(1)
+
+    input_image = Image.open(file).convert('RGB')
+    generated = image.as_sorted(input_image)
+    generated.save(out, filetype)
