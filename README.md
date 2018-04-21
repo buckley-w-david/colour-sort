@@ -30,8 +30,6 @@ pip install -e .
 ```
 #### Running tests locally
 
-Many of the tests require a running local MongoDB server. It will attempt to connect using the environment variable values, if they are set, or the defaults if they are not.
-
 To run the tests, run:
 ```
 pytest tests
