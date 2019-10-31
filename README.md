@@ -6,7 +6,7 @@ Generating Images using all 256<sup>3</sup> RGB colours, inspired by https://all
 
 To generate a re-coloured image, the source image's pixel data is sorted (using one of several different sorting modes) using numpy's `argsort` function, giving us a mapping from the original to the sorted version. This mapping is then used to "unsort" an array of all 256<sup>3</sup> colours that in sorted order. The result of this operation is then written out as our result.
 
-#### Installing
+### Installing
 
 Inside an activated virtualenv, and from the python folder of the project, run:
 ```
