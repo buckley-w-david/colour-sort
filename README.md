@@ -1,6 +1,6 @@
 ## Colour Sort 
 
-Generating Images using all 256<sup>3</sup> RGB colours, inspired by [https://allrgb.com/]
+Generating Images using all 256<sup>3</sup> RGB colours, inspired by https://allrgb.com/
 
 ### Technique
 
