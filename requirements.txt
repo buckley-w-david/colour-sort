@@ -7,7 +7,7 @@ mccabe==0.6.1
 more-itertools==4.1.0
 mypy==0.580
 numpy==1.14.2
-Pillow==5.1.0
+Pillow==6.2.0
 pluggy==0.6.0
 py==1.5.3
 pylint==1.8.4
