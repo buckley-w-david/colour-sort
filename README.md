@@ -1,51 +1,20 @@
-## Colour Sort - Generating Images using all 256<sup>3</sup> RGB colours
+## Colour Sort 
 
-CircleCI Status: [![CircleCI](https://circleci.com/gh/buckley-w-david/colour_sort.svg?style=svg)](https://circleci.com/gh/buckley-w-david/colour_sort)
+Generating Images using all 256<sup>3</sup> RGB colours, inspired by [https://allrgb.com/]
 
-### Installation
+### Technique
 
-#### Python 3.6
+To generate a re-coloured image, the source image's pixel data is sorted (using one of several different sorting modes) using numpy's `argsort` function, giving us a mapping from the original to the sorted version. This mapping is then used to "unsort" an array of all 256<sup>3</sup> colours that in sorted order. The result of this operation is then written out as our result.
 
-This package is tested to run on Python 3.6. To begin, you will need to have Python 3.6 installed.
-
-We recommend `pyenv` as an easy way to easily install and switch between any versions of Python that you need.
-
-See https://github.com/pyenv/pyenv#installation for pyenv installation instructions.
-
-#### Virtualenv
-
-Installing Python applications in a `virtualenv` is considered best practice. To do so, run:
-```
-python3 -m venv env
-source env/bin/activate
-```
-This will create a new virtualenv in a  folder called `env`, and activate the virutalenv. To deactivate the virtualenv, run `deactivate`
-
-#### Installing the app
+#### Installing
 
 Inside an activated virtualenv, and from the python folder of the project, run:
 ```
 pip install -r requirements.txt
-pip install -e .
-```
-#### Running tests locally
-
-To run the tests, run:
-```
-pytest tests
+pip install .
 ```
 
-To run the linter, run:
-```
-pylint src tests
-```
-
-To run the mypy type checker, run:
-```
-mypy src tests
-```
-
-### Running locally
+### Running
 
 Once the tool has been installed, it can be ran with the following command
 ```
@@ -57,8 +26,6 @@ Options:
   --help                          Show this message and exit.
 ```
 
-### Automated Testing
+### Verifying
 
-This repo is connected to CircleCI, and all tests, linters, and static type checking must pass before merging to master.
-
-
+The repository also contains `verify.py`, which contains logic to check that an image is valid (uses all 256<sup>3</sup> colours with no dups). 
