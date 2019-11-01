@@ -8,22 +8,26 @@ To generate a re-coloured image, the source image's pixel data is sorted (using 
 
 ### Installing
 
-Inside an activated virtualenv, and from the python folder of the project, run:
+Install the dependencies
 ```
 pip install -r requirements.txt
-pip install .
 ```
 
 ### Running
 
 Once the tool has been installed, it can be ran with the following command
 ```
-Usage: colour generate [OPTIONS] FILE OUT
+$ python -m colour_sort -h
+usage: __main__.py [-h] [--sorttype {brightness,rgb,rbg,grb,gbr,brg,bgr}]
+                   infile outfile
 
-Options:
-  --filetype [png|jpeg]
-  --sorttype [brightness|rgb|rbg|grb|gbr|brg|bgr]
-  --help                          Show this message and exit.
+positional arguments:
+  infile
+  outfile
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --sort {brightness,rgb,rbg,grb,gbr,brg,bgr}
 ```
 
 ### Verifying

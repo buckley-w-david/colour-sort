@@ -1,6 +1,8 @@
 import typing
 import numpy as np
 
+# FIXME duplicate constant
+IMAGE_SIZE = 4096
 
 def sort_map(src: np.ndarray, mapped: np.ndarray, order: typing.Optional[typing.List[str]] = None) -> np.ndarray:
     if order is not None:
@@ -57,8 +59,18 @@ def cartesian(arrays, out=None):
     index = product // arrays[0].size
     out[:, 0] = np.repeat(arrays[0], index)
     if arrays[1:]:
-        # import pdb; pdb.set_trace()
         cartesian(arrays[1:], out=out[0:index, 1:])
         for j in range(1, arrays[0].size):
             out[j*index:(j+1)*index, 1:] = out[0:index, 1:]
     return out
+
+def reshape_image(image):
+    # TODO: Replace hardcoded 4096x4096 to a pair of dimentions closest to the source onces that still is a correct size
+    thumb = image.resize((IMAGE_SIZE, IMAGE_SIZE))
+    return np.reshape(np.array(thumb), (IMAGE_SIZE*IMAGE_SIZE, 3))
+
+def generate_all_colours():
+    # TODO: Rename components, they are not always r, g,b (LAB)
+    red, green, blue = np.arange(256, dtype='u1'), np.arange(256, dtype='u1'), np.arange(256, dtype='u1')
+    return cartesian([red, green, blue])
+
