@@ -8,18 +8,18 @@ To generate a re-coloured image, the source image's pixel data is sorted (using 
 
 ### Installing
 
-Install the dependencies
+Go get [poetry](https://poetry.eustace.io/).
 ```
-pip install -r requirements.txt
+$ poetry install
 ```
 
 ### Running
 
 Once the tool has been installed, it can be ran with the following command
 ```
-$ python -m colour_sort -h
-usage: __main__.py [-h] [--sorttype {brightness,rgb,rbg,grb,gbr,brg,bgr}]
-                   infile outfile
+$ colour generate --help
+usage: colour generate [-h] [--sort {brightness,avg,rgb,rbg,brg,bgr,grb,gbr}]
+                       infile outfile
 
 positional arguments:
   infile
@@ -27,9 +27,14 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --sort {brightness,rgb,rbg,grb,gbr,brg,bgr}
+  --sort {brightness,avg,rgb,rbg,brg,bgr,grb,gbr}
+
+$ colour verify --help
+usage: colour verify [-h] infile
+
+positional arguments:
+  infile
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```
-
-### Verifying
-
-The repository also contains `verify.py`, which contains logic to check that an image is valid (uses all 256<sup>3</sup> colours with no dups). 

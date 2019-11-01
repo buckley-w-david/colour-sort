@@ -17,6 +17,21 @@ class SortType(enum.Enum):
     GRB        = enum.auto()
     GBR        = enum.auto()
 
+# TODO
+#     LAB        = enum.auto()
+#     LBA        = enum.auto()
+#     BLA        = enum.auto()
+#     BAL        = enum.auto()
+#     ABL        = enum.auto()
+#     ALB        = enum.auto()
+#
+#     HSV        = enum.auto()
+#     HVS        = enum.auto()
+#     VHS        = enum.auto()
+#     VSH        = enum.auto()
+#     SVH        = enum.auto()
+#     SHV        = enum.auto()
+
     @staticmethod
     def from_str(sort_type: str) -> 'SortType':
         return getattr(SortType, sort_type.upper())
@@ -31,7 +46,7 @@ def _rgb_to_lab(image):
     return ImageCms.applyTransform(image, rgb2lab)
 
 # image needs to be in LAB colour space
-def _sort_brightness(image):
+def _sort_brightness(image, width=IMAGE_SIZE, height=IMAGE_SIZE):
     results = misc.generate_all_colours()
 
     src_brightness = image[:,0]
@@ -44,7 +59,7 @@ def _sort_brightness(image):
     return Image.fromarray(np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE, 3)), mode='LAB')
 
 
-def _sort_avg(image):
+def _sort_avg(image, width=IMAGE_SIZE, height=IMAGE_SIZE):
     results = misc.generate_all_colours()
 
     src_avg = np.sum(image, axis=1)
@@ -57,7 +72,7 @@ def _sort_avg(image):
     return Image.fromarray(np.reshape(mapped, (IMAGE_SIZE, IMAGE_SIZE, 3)))
 
 
-def _sort_rgb(image, mode):
+def _sort_rgb(image, mode, width=IMAGE_SIZE, height=IMAGE_SIZE):
     result = misc.generate_all_colours()
 
     src_structures = np.core.records.fromarrays(image.transpose(),
@@ -85,4 +100,4 @@ def create_sorted_image(image: Image.Image, mode: SortType) -> Image.Image:
     elif mode is SortType.AVG:
         return _sort_avg(reshaped)
     else:
-        return _sort_rgb(reshaped, str(mode).lower())
+        return _sort_rgb(reshaped, mode.name.lower())

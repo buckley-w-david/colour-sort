@@ -3,9 +3,6 @@ import sys
 import numpy as np
 from PIL import Image
 
-def to_index(colour):
-    return colour[0] << 16 | colour[1] << 8 | colour[2]
-
 def verify_image(img: Image.Image) -> bool:
     check = np.zeros(256*256*256, dtype=np.bool)
     img_a = np.array(img).astype(np.uint32) # Oh god they all have to be uint32 because 255 << 16 = 16711680
