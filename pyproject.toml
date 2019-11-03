@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colour_sort"
-version = "0.1.0"
+version = "0.1.1"
 description = "A tool to generate images using all rgb colours with no duplicates."
 authors = ["David Buckley <buckley.w.david@gmail.com>"]
 license = "MIT"
@@ -9,6 +9,7 @@ homepage = "https://github.com/buckley-w-david/colour_sort"
 repository = "https://github.com/buckley-w-david/colour_sort"
 include = [
     "LICENSE",
+    "colour_sort/all.npy"
 ]
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
@@ -19,6 +20,7 @@ classifiers = [
 python = ">= 3.6.7"
 numpy = "^1.17"
 pillow = "^6.2"
+importlib_resources = "^1.0"
 
 [tool.poetry.scripts]
 colour = 'colour_sort:cli.run'
