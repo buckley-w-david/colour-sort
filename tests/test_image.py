@@ -1,7 +1,8 @@
 import numpy as np
 from PIL import Image
 import pytest
-from colour_sort.image import create_sorted_image, SortType
+from colour_sort.image import create_sorted_image
+from colour_sort.sort_type import SortType
 from colour_sort.verify import verify_image
 
 
